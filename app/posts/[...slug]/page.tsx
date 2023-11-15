@@ -2,11 +2,12 @@ import { notFound } from "next/navigation"
 import { allPosts } from "contentlayer/generated"
 
 import { Metadata } from "next"
-import { Mdx } from "@/components/mdx-components"
+import  Mdx  from "@/components/mdx-components"
 
 interface PostProps {
   params: {
-    slug: string[]
+    slug ?: string[]
+    code ?: string 
   }
 }
 
@@ -15,7 +16,7 @@ async function getPostFromParams(params: PostProps["params"]) {
   const post = allPosts.find((post) => post.slugAsParams === slug)
 
   if (!post) {
-    null
+    return null
   }
 
   return post
@@ -47,6 +48,7 @@ export default async function PostPage({ params }: PostProps) {
 
   if (!post) {
     notFound()
+    return null
   }
 
   return (

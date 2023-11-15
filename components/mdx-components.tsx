@@ -9,13 +9,10 @@ interface MdxProps {
   code: string
 }
 
-export function Mdx({ code }: MdxProps) {
+const Mdx: React.FC<MdxProps> = ({ code }) => {
   const Component = useMDXComponent(code)
 
-  return <Component components={components} />
+  return <Component components= {components} />
 }
 
-
-
-
-
+export default Mdx;
